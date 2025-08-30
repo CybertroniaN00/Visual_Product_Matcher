@@ -8,6 +8,5 @@ __pycache__/
 # Python package files you may not need
 __init__.py
 
-# Uploaded images
-frontend/static/uploads/
+
 
