@@ -126,14 +126,14 @@ def process_image(image_source, is_url=True):
     img = fetch_image_from_url(image_source) if is_url else Image.open(image_source).convert("RGB")
     input_tensor = preprocess(img).unsqueeze(0).to(device)
 
-    # Category
+    # Category classifications
     with torch.no_grad():
         outputs = resnet(input_tensor)
         probs = torch.nn.functional.softmax(outputs[0], dim=0)
         top_catid = torch.argmax(probs)
     category = f"class_{top_catid.item()}"
 
-    # Embeddings
+    # Embeddings extractions
     embeddings = feature_extractor(input_tensor).cpu().numpy().flatten().tolist()
 
     # Dominant colors
