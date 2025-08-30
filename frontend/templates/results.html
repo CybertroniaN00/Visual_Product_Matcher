@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Results - Visual Product Matcher</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<div class="container">
+
+    <!-- Query Image -->
+    <div class="query-image">
+        <h3>Your Product:</h3>
+        <img src="{{ query_img }}" alt="Query Image">
+    </div>
+
+    <!-- Similar Products Title -->
+    <h1><u>Similar Products</u></h1>
+
+    <!-- Results Grid -->
+    <div class="results-grid">
+        {% for product in results %}
+        <div class="product-card">
+            <img src="{{ url_for('static', filename=product['image_url']) }}" alt="{{ product['category'] }}">
+            <p><strong>Category:</strong> {{ product['category'] }}</p>
+            <p><strong>Colors:</strong>
+                {% for c in product['dominant_colors'] %}
+                    <span class="color-tag" style="background-color: rgb({{ c['rgb'][0] }}, {{ c['rgb'][1] }}, {{ c['rgb'][2] }});">
+                        {{ c['name'] }}
+                    </span>
+                {% endfor %}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Back Link -->
+    <a class="back-link" href="{{ url_for('index') }}">&#8592; Try Another Image</a>
+</div>
+</body>
+</html>

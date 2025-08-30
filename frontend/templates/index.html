@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Product Matcher</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<div class="container">
+
+    <h1><u>Visual Product Matcher</h1>
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <!-- Upload Card -->
+    <div class="upload-card">
+        <form method="POST" enctype="multipart/form-data">
+            
+            <label for="image_url">Enter Image URL:</label>
+            <input type="url" name="image_url" id="image_url" placeholder="https://example.com/image.jpg">
+
+            <p class="or-text">OR</p>
+
+            <label for="image_file">Upload Image:</label>
+            <input type="file" name="image_file" id="image_file" accept="image/*">
+
+            <button type="submit">Find Similar Products</button>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
